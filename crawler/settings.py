@@ -46,3 +46,6 @@ PROXY_LIST = [
 ]
 
 RETRY_HTTP_CODES = [500, 502, 503, 504, 400, 405, 408]
+
+# valid proxy saved filename
+PROXY_LIST_FILE = 'proxy_list'
