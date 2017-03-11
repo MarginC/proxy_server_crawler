@@ -18,6 +18,7 @@ import logging
 import Queue
 import gzip
 from StringIO import StringIO
+from scrapy.utils.project import get_project_settings
 
 socket.setdefaulttimeout(2)
 localhost = settings.get('LOCAL_IP')
@@ -75,10 +76,16 @@ class ProxyScanPipeline(object):
 		while self.running or not self.queue.empty():
 			try:
 				item = self.queue.get(True, 1)
-				scan(item)
+				scan(item, save_valid)
 			except Queue.Empty:
 				pass
 
+def save_valid(item):
+	settings = get_project_settings()
+	proxy_list_file = settings.get('PROXY_LIST_FILE', 'proxy_list')
+	with open(proxy_list_file, 'a') as f:
+		f.write(json.dumps(dict(item), ensure_ascii=False) + '\n')
+			
 def scan(item, callback=None):
 	result = test_proxy(item)
 	if result is not None:
