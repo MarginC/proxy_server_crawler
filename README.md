@@ -14,6 +14,8 @@ Currently supported websites:
 * http://www.socks-proxy.net
 * http://www.xroxy.com
 * http://www.xicidaili.com
+* https://www.us-proxy.org
+* http://proxydb.net
 
 Currently supported testing(for http proxy)
 
@@ -32,7 +34,7 @@ Currently supported testing(for http proxy)
 
 ```bash
 cd proxy_server_crawler
-sudo scrapy crawl chunzhen
+scrapy crawl chunzhen
 ```
 
 [log]
