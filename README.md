@@ -32,7 +32,7 @@ Currently supported testing(for http proxy)
 
 ```bash
 cd proxy_server_crawler
-scrapy crawl chunzhen
+sudo scrapy crawl chunzhen
 ```
 
 [log]
