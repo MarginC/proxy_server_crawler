@@ -6,23 +6,19 @@ from crawler.items import ProxyIPItem
 class XiciSpider(Spider):
     name = "xici"
     allowed_domains = ["xicidaili.com"]
-    start_urls = [
-        "http://www.xicidaili.com/nn",
-        "http://www.xicidaili.com/nn/2",
-        "http://www.xicidaili.com/nn/3",
-        "http://www.xicidaili.com/nn/4",
-        "http://www.xicidaili.com/nn/5",
-        "http://www.xicidaili.com/nn/6",
-        "http://www.xicidaili.com/nn/7",
-        "http://www.xicidaili.com/nn/8",
-        "http://www.xicidaili.com/nn/9",
-        "http://www.xicidaili.com/nn/10"
+    start_urls_prefix = [
+        'http://www.xicidaili.com/nn',
+        'http://www.xicidaili.com/nt',
+        'http://www.xicidaili.com/wt',
     ]
-    referer = 'http://www.xicidaili.com/nn'
+    start_page = 1
+    end_page = 20
 
     def start_requests(self):
-        for item in self.start_urls:
-            yield Request(url=item, headers={'Referer': self.referer})
+        for prefix in self.start_urls_prefix:
+            for page in range(self.start_page, self.end_page + 1):
+                url = '{0}/{1}'.format(prefix, page)
+                yield Request(url=url, headers={'Referer': prefix})
 
     def parse(self, response):
         ip_list = response.xpath('//table[@id="ip_list"]/tr')
