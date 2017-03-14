@@ -16,6 +16,8 @@ Currently supported websites:
 * http://www.xicidaili.com
 * https://www.us-proxy.org
 * http://proxydb.net
+* https://hidemy.name
+* https://hidester.com
 
 Currently supported testing(for http proxy)
 
